@@ -31,15 +31,26 @@
   		var retVal = '';
   		var https = require( options.ssh ? 'https' : 'http');
   		var o = {
-          host: options.host,
-          path: options.path,
-          port: options.port || 80,
-          method: options.method || 'GET',
-          headers : options.headers || { }
+        host: options.host,
+        path: options.path,
+        port: options.port || 80,
+        method: options.method || 'GET',
+        headers : options.headers || { }
       };
       var deferred = promise.defer();
       console.log('curl options', o);
-      // console.log('curl data', options.data);
+      
+      if (typeof o.headers['Content-Type'] === 'undefined') {
+        o.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+      }
+
+      if (options.data) {
+        if (typeof options.data !== 'string') {
+          options.data = JSON.stringify(options.data);
+        }
+        o.headers['Content-Length'] = options.data.length;
+        
+      } 
       var req = https.request(o, function(res) {
 
         res.setEncoding('utf8');
@@ -80,18 +91,9 @@
     	});
 
       if (options.data) {
-        if (typeof options.data !== 'string') {
-          options.data = JSON.stringify(options.data);
-        }
-
         o.headers['Content-Length'] = options.data.length;
-        
         req.write(options.data);
       } 
-
-      if (typeof o.headers['Content-Type'] === 'undefined') {
-        o.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-      }
 
       req.on('error', function(e) {
         deferred.reject(null, 'problem with request: ' + e);
