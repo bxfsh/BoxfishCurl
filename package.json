@@ -1,6 +1,6 @@
 {
-  "name": "BoxfishCurl",
-  "version": "1.0.0",
+  "name": "boxfishcurl",
+  "version": "1.0.1",
   "description": "Curl library for the boxfish ads platform",
   "main": "index.js",
   "scripts": {

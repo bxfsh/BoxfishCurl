@@ -39,7 +39,7 @@
       };
       var deferred = promise.defer();
       console.log('curl options', o);
-      console.log('curl data', options.data);
+      // console.log('curl data', options.data);
       var req = https.request(o, function(res) {
 
         res.setEncoding('utf8');

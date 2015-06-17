@@ -2,7 +2,7 @@
 
 ## Installation
 
-npm install BoxfishCurl
+npm install boxfishcurl
 
 ## Usage
 
