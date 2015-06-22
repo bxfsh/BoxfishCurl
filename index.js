@@ -5,7 +5,8 @@
   /**
    * dependencies
    */  
-  var promise 	 = require('promised-io/promise');
+  var promise 	  = require('promised-io/promise');
+  var colors      = require('colors');
 
   /**
    * Curl service
@@ -65,18 +66,19 @@
         	
         	try {
             if (retVal.length && retVal.length ===0) {
-              console.log('CURL: response is empty', res.req._header);
+              // console.log('CURL: response is empty', res.req._header);
             } else if (typeof retVal === 'string') {
             	data = JSON.parse(retVal);
           	}
           } catch ( _ ) {
-            console.log('CURL: error while parsing data');
+            // console.log('CURL: error while parsing data');
           }
 
           switch (res.statusCode) {
             case 500:
             case 400:
             case 404:
+              console.log('Curl Error'.red);
               console.log(data);
               console.log('CURL: returned code', res.statusCode, 'from request', res.req._header);
               deferred.reject(data, data);
