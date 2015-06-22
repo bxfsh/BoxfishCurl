@@ -39,7 +39,7 @@
         headers : options.headers || { }
       };
       var deferred = promise.defer();
-      console.log('curl options', o);
+      // console.log('curl options', o);
       
       if (typeof o.headers['Content-Type'] === 'undefined') {
         o.headers['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -79,7 +79,7 @@
             case 400:
             case 404:
               console.log('Curl Error'.red);
-              console.log(data);
+              // console.log(data);
               console.log('CURL: returned code', res.statusCode, 'from request', res.req._header);
               deferred.reject(data, data);
               break;
