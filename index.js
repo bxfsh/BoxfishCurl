@@ -56,7 +56,7 @@
 
         res.setEncoding('utf8');
         res.on('data', function (chunk) { 
-          console.log(new Date(), 'on data', chunk);
+          // console.log(new Date(), 'on data', chunk);
           retVal += chunk; 
         });
 
