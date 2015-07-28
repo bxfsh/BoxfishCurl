@@ -20,7 +20,7 @@ curl.put('http://your-PUT-url', params).then([Function], [Function]);
 ```
 ```javascript
 // DELETE
-curl.delete('http://your-PUT-url', params).then([Function], [Function]);
+curl.delete('http://your-DELETE-url', params).then([Function], [Function]);
 ```
 ### default properties
 you can set any request options here, including any header you may need.
