@@ -4,8 +4,32 @@
 
 npm install boxfishcurl
 
-## Usage
+## Using simple Request
+###Usage
+```javascript
+// GET
+curl.get('http://google.com').then([Function], [Function]);
+```
+```javascript
+// POST
+curl.post('http://your-post-url', params).then([Function], [Function]);
+```
+```javascript
+// PUT
+curl.put('http://your-PUT-url', params).then([Function], [Function]);
+```
+```javascript
+// DELETE
+curl.delete('http://your-PUT-url', params).then([Function], [Function]);
+```
+### default properties
+you can set any request options here, including any header you may need.
 
+``` javascript
+curl.init({ headers: { 'Content-Type' : 'application/json' } });
+```
+## Using HTTP and HTTPS modules
+###Usage
 | Param         | type |  Required      | Default  |
 | ------------- |-----:| --------------:|-----:|
 | host          | string | true | - |
@@ -19,7 +43,7 @@ npm install boxfishcurl
 ``` javascript
 curl.req({
 	    host    : 'boxfish.com',
-	    path    : '/', 
+	    path    : '/',
 	    headers : { 'Content-Type': 'application/json' },
 	    method  : 'POST',
 	    data    : {
@@ -31,7 +55,7 @@ curl.req({
 	    // you got your data back
 	  }, function(err) {
 	    // something went wrong
-	  });	
+	  });
 ```
 
 ## Run test

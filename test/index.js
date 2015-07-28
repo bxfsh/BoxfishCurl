@@ -1,7 +1,7 @@
 var should = require('chai').should();
 var assert = require('chai').assert;
 var curl = require('../index');
-    
+
 describe('BoxfishCurl', function() {
 
 	it('should ping boxfish.com', function() {
@@ -12,7 +12,7 @@ describe('BoxfishCurl', function() {
 	    data.should.be.a('string');
 	  }, function(err) {
 	    throw 'If this is broken, STOP WHAT YOU ARE DOING AND GO FIX THE WEBSITE' + err;
-	  });	
+	  });
 	});
 
 	it('should get todays weather', function() {
@@ -25,6 +25,15 @@ describe('BoxfishCurl', function() {
 		}, function(err) {
 			throw err;
 		});
-	})
-	
+	});
+
+  it('should get todays weather', function() {
+		curl.get('http://google.com').then(function(data) {
+      console.log(data);
+			// expect(data).to.have.property('weather').with.length(1);
+		}, function(err) {
+			throw err;
+		});
+	});
+
 });
