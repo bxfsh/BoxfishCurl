@@ -91,38 +91,38 @@
         options[formKey] = params;
       }
 
-      console.log('Request options');
-      console.log(options);
+      // console.log('Request options');
+      // console.log(options);
 
       this.request(options, function(error, response, data){
-        console.log(error);
-        console.log(data);
+        // console.log(error);
+        // console.log(data);
         if (error) {
           callback(error, data, response);
         }
         else {
+
           try {
             data = JSON.parse(data);
-          }
-          catch(parseError) {
+          } catch(parseError) {
             callback(
-              new Error('Status Code: ' + response.statusCode),
+              null,
               data,
               response
             );
-
           }
+
           if (typeof data.errors !== 'undefined') {
             callback(data.errors, data, response);
           }
+
           else if (response.statusCode !== 200 && response.statusCode !== 201) {
             callback(
               new Error('Status Code: ' + response.statusCode),
               data,
               response
             );
-          }
-          else {
+          } else {
             callback(null, data, response);
           }
         }
@@ -145,7 +145,7 @@
 
         if (resolved) return;
 
-        if (typeof err !== 'undefined') {
+        if (typeof err !== 'undefined' && err !== null) {
           deferred.reject(err);
         } else {
           deferred.resolve(response);

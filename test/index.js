@@ -29,7 +29,7 @@ describe('BoxfishCurl', function() {
 
   it('should get todays weather', function() {
 		curl.get('http://google.com').then(function(data) {
-      console.log(data);
+      // console.log(data);
 			// expect(data).to.have.property('weather').with.length(1);
 		}, function(err) {
 			throw err;

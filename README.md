@@ -41,21 +41,22 @@ curl.init({ headers: { 'Content-Type' : 'application/json' } });
 
 
 ``` javascript
-curl.req({
-	    host    : 'boxfish.com',
-	    path    : '/',
-	    headers : { 'Content-Type': 'application/json' },
-	    method  : 'POST',
-	    data    : {
-	        field       : 'this can be any JSON',
-	        used        : 'this will be sent in the request body',
-	        required    : false
-	    }
-	  }).then(function(response) {
-	    // you got your data back
-	  }, function(err) {
-	    // something went wrong
-	  });
+curl
+	.req({
+    host    : 'boxfish.com',
+    path    : '/',
+    headers : { 'Content-Type': 'application/json' },
+    method  : 'POST',
+    data    : {
+        field       : 'this can be any JSON',
+        used        : 'this will be sent in the request body',
+        required    : false
+    }
+  }).then(function(response) {
+    // you got your data back
+  }, function(err) {
+    // something went wrong
+  });
 ```
 
 ## Run test
