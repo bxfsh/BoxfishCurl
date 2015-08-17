@@ -99,8 +99,7 @@
         // console.log(data);
         if (error) {
           callback(error, data, response);
-        }
-        else {
+        } else {
 
           try {
             data = JSON.parse(data);
@@ -206,6 +205,7 @@
   	req: function(options, formData) {
 
   		var retVal = '';
+      var deferredResolved = false;
   		var https = require( options.ssh ? 'https' : 'http');
   		var o = {
         host: options.host,
@@ -229,8 +229,8 @@
           options.data = JSON.stringify(options.data);
         }
         o.headers['Content-Length'] = options.data.length;
-
       }
+
       var req = https.request(o, function(res) {
 
         res.setEncoding('utf8');
@@ -258,18 +258,26 @@
             case 400:
             case 404:
               console.log('Curl Error'.red);
-              // console.log(data);
               console.log('CURL: returned code', res.statusCode, 'from request', res.req._header);
-              deferred.reject(data, data);
+              if (!deferredResolved) deferred.reject(data, data);
+              deferredResolved = true;
               break;
             default:
-              deferred.resolve(data, res);
+              if (!deferredResolved) deferred.resolve(data, res);
+              deferredResolved = true;
               break;
           }
 
         });
 
     	});
+
+      if (options.timeout) {
+        req.setTimeout(options.timeout, function() {
+          if (!deferredResolved) deferred.reject('Request timeout');
+          deferredResolved = true;
+        });
+      }
 
       if (options.form && options.form.pipe) {
         options.form.pipe(req);
