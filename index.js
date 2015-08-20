@@ -174,7 +174,7 @@
      * @return {[type]}        [description]
      */
     post: function post(url, params) {
-      return this.__requestWithDeferred('get', url, params);
+      return this.__requestWithDeferred('post', url, params);
     },
 
     /**
@@ -184,7 +184,7 @@
      * @return {[type]}        [description]
      */
     put: function put(url, params) {
-      return this.__requestWithDeferred('get', url, params);
+      return this.__requestWithDeferred('put', url, params);
     },
 
     /**
@@ -194,7 +194,7 @@
      * @return {[type]}        [description]
      */
     delete: function(url, params) {
-      return this.__requestWithDeferred('get', url, params);
+      return this.__requestWithDeferred('delete', url, params);
     },
 
   	/**
