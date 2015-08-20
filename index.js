@@ -147,7 +147,7 @@
         if (resolved) return;
 
         if (typeof err !== 'undefined' && err !== null) {
-          deferred.reject(err);
+          deferred.reject({ code: response.statusCode, err: data });
         } else {
           deferred.resolve(response);
         }
