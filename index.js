@@ -111,6 +111,8 @@
             );
           }
 
+          console.log('status code from boxfishcurl', response.statusCode);
+
           if (typeof data.errors !== 'undefined') {
             callback(data.errors, data, response);
           }
