@@ -9,6 +9,7 @@
   var colors      = require('colors');
   var request     = require('request');
   var extend      = require('deep-extend');
+  var jsesc       = require('jsesc');
 
   /**
    * Curl service
@@ -70,6 +71,11 @@
         stream = true;
       }
 
+      // escape the data
+      if (params.data) {
+        params.data = jsesc(params.data, { json: true });
+      }
+
       // Build the options to pass to our custom request object
       var options = {
         method: method.toLowerCase(),  // Request method - get || post
@@ -111,7 +117,7 @@
             );
           }
 
-          console.log('status code from boxfishcurl', response.statusCode);
+          // console.log('status code from boxfishcurl', response.statusCode);
 
           if (typeof data.errors !== 'undefined') {
             callback(data.errors, data, response);
@@ -147,7 +153,8 @@
         if (resolved) return;
 
         if (typeof err !== 'undefined' && err !== null) {
-          deferred.reject({ code: response.statusCode, err: data });
+          console.log(err);
+          deferred.reject({ code: 500, err: data });
         } else {
           deferred.resolve(response);
         }
@@ -228,7 +235,14 @@
 
       if (options.data) {
         if (typeof options.data !== 'string') {
-          options.data = JSON.stringify(options.data);
+          // options.data = JSON.stringify(options.data);
+          options.data = jsesc(options.data, { json: true });
+
+          console.log('daniel test'.green);
+          console.log('daniel test'.green);
+          console.log('daniel test'.green);
+          console.log(options.data);
+
         }
         o.headers['Content-Length'] = options.data.length;
       }

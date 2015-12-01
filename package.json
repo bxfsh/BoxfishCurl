@@ -1,6 +1,6 @@
 {
   "name": "boxfishcurl",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Curl library for the boxfish ads platform",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,9 @@
   "dependencies": {
     "colors": "^1.1.2",
     "deep-extend": "^0.4.0",
-    "promised-io": "^0.3.5"
+    "jsesc": "^0.5.0",
+    "promised-io": "^0.3.5",
+    "request": "^2.67.0"
   },
   "devDependencies": {
     "chai": "^2.3.0",

@@ -36,4 +36,17 @@ describe('BoxfishCurl', function() {
 		});
 	});
 
+	it('should get todays weather sending a JSON', function() {
+		curl.get('api.openweathermap.org/data/2.5/weather', {
+			data: { lat: 35, lon : 139 },
+			header: { 'Content-Type': 'application/json' }
+		}).then(function(data) {
+			console.log(data);
+			expect(data).to.have.property('weather').with.length(1);
+		}, function(err) {
+			console.log(err);
+			throw err;
+		});
+	});
+
 });
