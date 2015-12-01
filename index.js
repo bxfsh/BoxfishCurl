@@ -237,12 +237,6 @@
         if (typeof options.data !== 'string') {
           // options.data = JSON.stringify(options.data);
           options.data = jsesc(options.data, { json: true });
-
-          console.log('daniel test'.green);
-          console.log('daniel test'.green);
-          console.log('daniel test'.green);
-          console.log(options.data);
-
         }
         o.headers['Content-Length'] = options.data.length;
       }
