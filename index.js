@@ -267,6 +267,7 @@
             case 500:
             case 400:
             case 404:
+              console.log(o);
               console.log('Curl Error'.red);
               console.log('CURL: returned code', res.statusCode, 'from request', res.req._header);
               if (!deferredResolved) deferred.reject(data, data);
