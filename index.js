@@ -97,12 +97,8 @@
         options[formKey] = params;
       }
 
-      // console.log('Request options');
-      // console.log(options);
-
       this.request(options, function(error, response, data){
-        // console.log(error);
-        // console.log(data);
+
         if (error) {
           callback(error, data, response);
         } else {
@@ -116,8 +112,6 @@
               response
             );
           }
-
-          // console.log('status code from boxfishcurl', response.statusCode);
 
           if (typeof data.errors !== 'undefined') {
             callback(data.errors, data, response);
@@ -153,7 +147,6 @@
         if (resolved) return;
 
         if (typeof err !== 'undefined' && err !== null) {
-          console.log(err);
           deferred.reject({ code: 500, err: data });
         } else {
           deferred.resolve(response);
@@ -245,7 +238,6 @@
 
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
-          // console.log(new Date(), 'on data', chunk);
           retVal += chunk;
         });
 
@@ -255,21 +247,16 @@
 
         	try {
             if (retVal.length && retVal.length ===0) {
-              // console.log('CURL: response is empty', res.req._header);
             } else if (typeof retVal === 'string') {
             	data = JSON.parse(retVal);
           	}
           } catch ( _ ) {
-            // console.log('CURL: error while parsing data');
           }
 
           switch (res.statusCode) {
             case 500:
             case 400:
             case 404:
-              console.log(o);
-              console.log('Curl Error'.red);
-              console.log('CURL: returned code', res.statusCode, 'from request', res.req._header);
               if (!deferredResolved) deferred.reject(data, data);
               deferredResolved = true;
               break;
@@ -295,7 +282,7 @@
       }
 
       req.on('response', function(res) {
-        console.log(res.statusCode);
+        // console.log(res.statusCode);
       });
 
       if (options.data) {
